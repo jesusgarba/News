@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class ListScreenViewModel @Inject constructor(
     private val repository: NewsRepository
@@ -27,3 +28,5 @@ class ListScreenViewModel @Inject constructor(
     }
 
 }
+
+
