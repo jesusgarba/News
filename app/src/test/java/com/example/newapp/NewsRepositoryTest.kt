@@ -1,6 +1,8 @@
 package com.example.newapp
 
 import com.example.newapp.provider.NewsProvider
+import com.example.newapp.repository.ApiKeyInvalidException
+import com.example.newapp.repository.MissingApiKeyException
 import com.example.newapp.repository.NewsRepositoryImpl
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
@@ -47,6 +49,26 @@ class NewsRepositoryTest {
             assertEquals(20, articles.size)
             assertEquals("Quentin Webb, Suryatapa Bhattacharya", articles[0].author)
             assertEquals("Benjamin Raven | braven@mlive.com", articles[19].author)
+        }
+    }
+
+    @Test
+    fun `Api key missing exception`() {
+        mockWebServer.enqueueResponse("api_key_missing.json")
+        assertThrows(MissingApiKeyException::class.java) {
+            runBlocking {
+                newsRepository.getNews("US")
+            }
+        }
+    }
+
+    @Test
+    fun `Invalid Api key exception`() {
+        mockWebServer.enqueueResponse("api_key_invalid.json")
+        assertThrows(ApiKeyInvalidException::class.java) {
+            runBlocking {
+                newsRepository.getNews("US")
+            }
         }
     }
 }
