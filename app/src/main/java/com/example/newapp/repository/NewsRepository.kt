@@ -21,7 +21,6 @@ class NewsRepositoryImpl
                 "apiKeyMissing" -> throw MissingApiKeyException()
                 "apiKeyInvalid" -> throw ApiKeyInvalidException()
                 else -> throw Exception()
-
             }
         }
         news = apiResponse?.articles ?: emptyList()
@@ -29,9 +28,6 @@ class NewsRepositoryImpl
     }
 
     override fun getNew(title: String): News = news.first { it.title == title }
-
-
-
 }
 
 class MissingApiKeyException : java.lang.Exception()

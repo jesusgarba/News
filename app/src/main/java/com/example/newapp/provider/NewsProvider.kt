@@ -9,6 +9,6 @@ private const val API_KEY = "6357f74bd68f43bd967fbdc7ddf0a5cc"
 
 interface NewsProvider {
 
-    @GET("top-headlines?api = $API_KEY")
+    @GET("top-headlines?apikey=$API_KEY")
     suspend fun topHeadLines(@Query("country")country: String): Response<NewsApiResponse>
 }
