@@ -59,7 +59,7 @@ fun ListScreen2(
                         .padding(8.dp)
                         .fillMaxWidth()
                         .clickable {
-                            //TODO: Navegar a detalles
+                            navController.navigate("${Destinations.DETAILS_SCREEN}/${new.title}")
                         }
                 ) {
                     Column() {
